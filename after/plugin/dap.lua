@@ -4,7 +4,7 @@ local dapgo, dappy = require("dap-go"), require("dap-python")
 
 dapui.setup()
 dapgo.setup()
-dappy.setup('~/.venv/bin/python')
+dappy.setup()  -- don't forget to install debugpy in venv
 
 -- listeners to run debug ui (dapui)
 dap.listeners.after.event_initialized["dapui_config"] = function()

@@ -39,6 +39,7 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(client, bufnr)
+    vim.diagnostic.config({ update_in_insert = true })
     local opts = {buffer = bufnr, remap = false}
 
     vim.keymap.set('n', 'gtd', function() vim.lsp.buf.type_definition() end, opts)
@@ -92,6 +93,19 @@ lspconfig.gopls.setup({
     },
     completeUnimported = true, -- autocomplete unimported packages
     deepCompletion = true,     -- enable deep completion
+})
+
+lspconfig.pyright.setup({
+    settings = {
+        exclude = { "**/node_modules", "**/__pycache__" },
+        -- typing
+        typeCheckingMode = "strict",
+        reportMissingTypeArgument = false,
+        reportUnknownVariableType = false,
+        -- python
+        pythonVersion = "3.11",
+        pythonPlatform = "Linux",
+    }
 })
 
 lsp.setup()
